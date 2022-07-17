@@ -118,3 +118,7 @@
   box-sizing: border-box;
   background: rgba(0, 100, 0, 0.05) !important;
 } */
+
+body {
+  @apply bg-gray-900;
+}

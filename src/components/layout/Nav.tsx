@@ -8,7 +8,7 @@ const Nav = () => {
 
   useEffect(() => {
     const handleScroll = (e: Event) => {
-      (e.currentTarget as Window).scrollY > 0
+      (e.currentTarget as Window).scrollY > 20
         ? setShowNavbarBlur(true)
         : setShowNavbarBlur(false);
     };
@@ -29,22 +29,22 @@ const Nav = () => {
       <ul className='flex items-center gap-4 text-sm text-white'>
         <li>
           <Link href='/'>
-            <a>Link1</a>
+            <a>Home</a>
           </Link>
         </li>
         <li>
           <Link href='/'>
-            <a>Link2</a>
+            <a>Projects</a>
           </Link>
         </li>
         <li>
           <Link href='/'>
-            <a>Link3</a>
+            <a>Blog</a>
           </Link>
         </li>
         <li>
           <Link href='/'>
-            <a>Link4</a>
+            <a>Contact</a>
           </Link>
         </li>
       </ul>
