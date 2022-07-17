@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import { useMediaQuery } from 'usehooks-ts';
@@ -13,6 +14,26 @@ const Nav = () => {
 
   const isMobile = useMediaQuery('(max-width: 639px)');
   const showNavbar = useShowNavbar();
+  const { asPath } = useRouter();
+
+  const links = [
+    {
+      href: '/',
+      label: 'Home',
+    },
+    {
+      href: '/projects',
+      label: 'Projects',
+    },
+    {
+      href: '/blog',
+      label: 'Blog',
+    },
+    {
+      href: '/contact',
+      label: 'Contact',
+    },
+  ];
 
   return (
     <nav
@@ -50,43 +71,19 @@ const Nav = () => {
           showMobileDropdown && 'pointer-events-auto translate-y-0 opacity-100'
         )}
       >
-        <li className='w-full sm:w-auto'>
-          <ButtonLink
-            className='w-full rounded-sm py-2 px-3 sm:w-auto'
-            href='/'
-            active
-            variant='ghost'
-          >
-            Home
-          </ButtonLink>
-        </li>
-        <li className='w-full sm:w-auto'>
-          <ButtonLink
-            className='w-full rounded-sm py-2 px-3 sm:w-auto'
-            href='/'
-            variant='ghost'
-          >
-            <a>Projects</a>
-          </ButtonLink>
-        </li>
-        <li className='w-full sm:w-auto'>
-          <ButtonLink
-            className='w-full rounded-sm py-2 px-3 sm:w-auto'
-            href='/'
-            variant='ghost'
-          >
-            <a>Blog</a>
-          </ButtonLink>
-        </li>
-        <li className='w-full sm:w-auto'>
-          <ButtonLink
-            className='w-full rounded-sm py-2 px-3 sm:w-auto'
-            href='/'
-            variant='ghost'
-          >
-            <a>Contact</a>
-          </ButtonLink>
-        </li>
+        {links.map((link) => (
+          <li key={link.href} className='w-full sm:w-auto'>
+            <ButtonLink
+              className='w-full rounded-sm py-2 px-3 sm:w-auto'
+              href={link.href}
+              active={asPath === link.href}
+              variant='ghost'
+              noHoverEffect
+            >
+              {link.label}
+            </ButtonLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
