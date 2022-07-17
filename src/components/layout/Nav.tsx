@@ -1,35 +1,24 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import { useMediaQuery } from 'usehooks-ts';
 
 import clsxm from '@/lib/clsxm';
+import useShowNavbar from '@/hooks/useShowNavbar';
 
 import ButtonLink from '@/components/links/ButtonLink';
 
 const Nav = () => {
-  const isMobile = useMediaQuery('(max-width: 639px)');
-
-  const [showNavbarBlur, setShowNavbarBlur] = useState(false);
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = (e: Event) => {
-      (e.currentTarget as Window).scrollY > 20
-        ? setShowNavbarBlur(true)
-        : setShowNavbarBlur(false);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isMobile = useMediaQuery('(max-width: 639px)');
+  const showNavbar = useShowNavbar();
 
   return (
     <nav
       className={clsxm(
         'sticky top-0 flex flex-col items-center justify-between sm:flex-row sm:px-8',
-        showNavbarBlur &&
+        showNavbar &&
           !isMobile &&
           'bg-gray-900 bg-opacity-70 backdrop-blur-md backdrop-saturate-150'
       )}
