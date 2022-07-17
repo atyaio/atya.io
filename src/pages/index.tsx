@@ -6,7 +6,7 @@ import Layout from '@/components/layout/Layout';
 export default function HomePage() {
   return (
     <Layout>
-      <div className='flex h-full items-center justify-center gap-4'>
+      <div className='flex h-full flex-wrap items-center justify-center gap-4'>
         <Button>Primary Button</Button>
         <Button variant='ghost'>Ghost Button</Button>
         <Button variant='light'>Light Button</Button>

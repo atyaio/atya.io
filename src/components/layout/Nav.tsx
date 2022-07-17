@@ -1,10 +1,17 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { BiMenu } from 'react-icons/bi';
+import { useMediaQuery } from 'usehooks-ts';
 
 import clsxm from '@/lib/clsxm';
 
+import ButtonLink from '@/components/links/ButtonLink';
+
 const Nav = () => {
+  const isMobile = useMediaQuery('(max-width: 639px)');
+
   const [showNavbarBlur, setShowNavbarBlur] = useState(false);
+  const [showMobileDropdown, setShowMobileDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = (e: Event) => {
@@ -21,31 +28,75 @@ const Nav = () => {
   return (
     <nav
       className={clsxm(
-        'sticky top-0 flex items-center justify-between bg-gray-900 bg-opacity-10 py-4 px-6',
-        showNavbarBlur && 'backdrop-blur-md backdrop-saturate-150'
+        'sticky top-0 flex flex-col items-center justify-between sm:flex-row sm:px-8',
+        showNavbarBlur &&
+          !isMobile &&
+          'bg-gray-900 bg-opacity-70 backdrop-blur-md backdrop-saturate-150'
       )}
     >
-      <h3 className='text-white'>AA.</h3>
-      <ul className='flex items-center gap-4 text-sm text-white'>
-        <li>
-          <Link href='/'>
-            <a>Home</a>
-          </Link>
+      <div
+        className={clsxm(
+          'flex w-full items-center justify-between py-4',
+          isMobile &&
+            'bg-gray-900 bg-opacity-90 px-8 backdrop-blur-md backdrop-saturate-150'
+        )}
+      >
+        <Link href='/'>
+          <a>
+            <h3 className='text-2xl text-white'>AA.</h3>
+          </a>
+        </Link>
+        <button
+          className='sm:hidden'
+          onClick={() => setShowMobileDropdown((b) => !b)}
+        >
+          <BiMenu className='h-7 w-7 fill-white' />
+        </button>
+      </div>
+      <ul
+        className={clsxm(
+          'flex w-full translate-y-6 flex-col items-center gap-4 py-2 text-sm text-white opacity-0 transition-all duration-300 sm:mt-0 sm:w-auto sm:translate-y-0 sm:flex-row sm:rounded-lg sm:bg-transparent sm:opacity-100 sm:backdrop-blur-0',
+          isMobile &&
+            'pointer-events-none absolute top-full right-0 z-10 bg-gray-900 bg-opacity-90 px-4 backdrop-blur-md backdrop-saturate-150',
+          showMobileDropdown && 'pointer-events-auto translate-y-0 opacity-100'
+        )}
+      >
+        <li className='w-full sm:w-auto'>
+          <ButtonLink
+            className='w-full rounded-sm py-2 px-3 sm:w-auto'
+            href='/'
+            active
+            variant='ghost'
+          >
+            Home
+          </ButtonLink>
         </li>
-        <li>
-          <Link href='/'>
+        <li className='w-full sm:w-auto'>
+          <ButtonLink
+            className='w-full rounded-sm py-2 px-3 sm:w-auto'
+            href='/'
+            variant='ghost'
+          >
             <a>Projects</a>
-          </Link>
+          </ButtonLink>
         </li>
-        <li>
-          <Link href='/'>
+        <li className='w-full sm:w-auto'>
+          <ButtonLink
+            className='w-full rounded-sm py-2 px-3 sm:w-auto'
+            href='/'
+            variant='ghost'
+          >
             <a>Blog</a>
-          </Link>
+          </ButtonLink>
         </li>
-        <li>
-          <Link href='/'>
+        <li className='w-full sm:w-auto'>
+          <ButtonLink
+            className='w-full rounded-sm py-2 px-3 sm:w-auto'
+            href='/'
+            variant='ghost'
+          >
             <a>Contact</a>
-          </Link>
+          </ButtonLink>
         </li>
       </ul>
     </nav>

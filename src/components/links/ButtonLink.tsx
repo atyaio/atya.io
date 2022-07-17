@@ -15,24 +15,21 @@ enum ButtonVariant {
 }
 
 type ButtonLinkProps = {
-  isDarkBg?: boolean;
   variant?: keyof typeof ButtonVariant;
+  active?: boolean;
 } & UnstyledLinkProps;
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
-  (
-    { children, className, variant = 'primary', isDarkBg = false, ...rest },
-    ref
-  ) => {
+  ({ children, className, active, variant = 'primary', ...rest }, ref) => {
     return (
       <UnstyledLink
         ref={ref}
         {...rest}
         className={clsxm(
-          'inline-flex items-center rounded px-4 py-2 font-semibold',
-          'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
+          'inline-flex items-center rounded-lg px-3 py-1 font-semibold',
           'shadow-sm',
-          'transition-colors duration-75',
+          'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900',
+          'transition-colors duration-100',
           //#region  //*=========== Variants ===========
           [
             variant === 'primary' && [
@@ -41,31 +38,26 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
               'hover:bg-primary-600 hover:text-white',
               'active:bg-primary-500',
               'disabled:bg-primary-400 disabled:hover:bg-primary-400',
+              'focus:ring-primary-900',
             ],
             variant === 'outline' && [
               'text-primary-500',
               'border border-primary-500',
-              'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
-              isDarkBg &&
-                'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+              'hover:bg-primary-900 hover:bg-opacity-30 active:bg-opacity-100 disabled:bg-primary-500',
+              'focus:ring-primary-900',
             ],
             variant === 'ghost' && [
-              'text-primary-500',
+              active ? 'text-primary-500' : 'text-white',
               'shadow-none',
-              'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
-              isDarkBg &&
-                'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+              'hover:text-white active:bg-primary-800 disabled:bg-primary-100',
+              'focus:ring-primary-500',
             ],
             variant === 'light' && [
               'bg-white text-dark ',
               'border border-gray-300',
               'hover:bg-gray-100 hover:text-dark',
               'active:bg-white/80 disabled:bg-gray-200',
-            ],
-            variant === 'dark' && [
-              'bg-gray-900 text-white',
-              'border border-gray-600',
-              'hover:bg-gray-800 active:bg-gray-700 disabled:bg-gray-700',
+              'focus:ring-gray-400',
             ],
           ],
           //#endregion  //*======== Variants ===========
