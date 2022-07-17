@@ -53,7 +53,7 @@ const Nav = () => {
       >
         <Link href='/'>
           <a>
-            <h3 className='text-2xl text-white'>AA.</h3>
+            <h3 className='text-2xl'>AA.</h3>
           </a>
         </Link>
         <button
@@ -65,9 +65,9 @@ const Nav = () => {
       </div>
       <ul
         className={clsxm(
-          'flex w-full translate-y-6 flex-col items-center gap-4 py-2 text-sm text-white opacity-0 transition-all duration-300 sm:mt-0 sm:w-auto sm:translate-y-0 sm:flex-row sm:rounded-lg sm:bg-transparent sm:opacity-100 sm:backdrop-blur-0',
+          'flex w-full translate-y-6 flex-col items-center gap-4 py-2 text-sm opacity-0 transition-all duration-300 sm:mt-0 sm:w-auto sm:translate-y-0 sm:flex-row sm:rounded-lg sm:bg-transparent sm:opacity-100 sm:backdrop-blur-0',
           isMobile &&
-            'pointer-events-none absolute top-full right-0 z-10 bg-gray-900 bg-opacity-90 px-4 backdrop-blur-md backdrop-saturate-150',
+            'pointer-events-none absolute top-full right-0 z-10 bg-gray-900 bg-opacity-70 px-4 backdrop-blur-md backdrop-saturate-150',
           showMobileDropdown && 'pointer-events-auto translate-y-0 opacity-100'
         )}
       >

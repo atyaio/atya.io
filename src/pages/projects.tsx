@@ -9,7 +9,7 @@ export default function ProjectsPage() {
       <Seo templateTitle='Projects' />
 
       <div className='flex h-full flex-wrap items-center justify-center gap-4'>
-        <h1 className='text-white'>Projects</h1>
+        <h1>Projects</h1>
       </div>
     </Layout>
   );

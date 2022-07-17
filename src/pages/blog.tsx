@@ -9,7 +9,7 @@ export default function BlogPage() {
       <Seo templateTitle='Blog' />
 
       <div className='flex h-full flex-wrap items-center justify-center gap-4'>
-        <h1 className='text-white'>Blog</h1>
+        <h1>Blog</h1>
       </div>
     </Layout>
   );

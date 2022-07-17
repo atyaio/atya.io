@@ -8,7 +8,7 @@ export default function ContactPage() {
     <Layout>
       <Seo templateTitle='Contact' />
       <div className='flex h-full flex-wrap items-center justify-center gap-4'>
-        <h1 className='text-white'>Contact</h1>
+        <h1>Contact</h1>
       </div>
     </Layout>
   );
