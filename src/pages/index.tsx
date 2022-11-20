@@ -16,9 +16,9 @@ const Home: NextPage = () => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <main className="flex min-h-screen flex-col bg-gradient-to-b from-[#2e026d] to-[#15162c] px-4">
-        <div className="container flex flex-col gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+      <main className="flex min-h-screen flex-col">
+        <div className="flex flex-col gap-12 py-16 ">
+          <h1 className="max-w-sm text-5xl font-extrabold tracking-tight dark:text-white sm:text-[5rem]">
             <FormattedMessage id="page.home.head.title" />
           </h1>
         </div>
