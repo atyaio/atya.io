@@ -1,6 +1,6 @@
+import { Layout } from "@/components";
 import { type AppType } from "next/dist/shared/lib/utils";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { IntlProvider } from "react-intl";
 
 import ar from "../lang/ar.json";
@@ -25,14 +25,11 @@ function getDirection(locale: SupportedLanguages) {
 const MyApp: AppType = ({ Component, pageProps }) => {
   const { locale = "en" } = useRouter() as { locale: SupportedLanguages };
 
-  useEffect(() => {
-    const direction = getDirection(locale);
-    document.documentElement.dir = direction;
-  }, [locale]);
-
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
-      <Component {...pageProps} />
+      <Layout dir={getDirection(locale)}>
+        <Component {...pageProps} />
+      </Layout>
     </IntlProvider>
   );
 };
